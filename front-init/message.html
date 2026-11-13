@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Надіслати повідомлення</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <img src="/logo.png" alt="logo">
+    <a href="/">Головна</a>
+    <a href="/message">Надіслати повідомлення</a>
+  </nav>
+  <main>
+    <h1>Надіслати повідомлення</h1>
+    <div id="notice" class="notice">Повідомлення надіслано!</div>
+    <form action="/message" method="post">
+      <label for="username">Ім'я користувача</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="message">Повідомлення</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Надіслати</button>
+    </form>
+  </main>
+  <script>
+    if (new URLSearchParams(location.search).get("sent") === "1") {
+      document.getElementById("notice").classList.add("visible");
+    }
+  </script>
+</body>
+</html>

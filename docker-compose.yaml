@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    container_name: goit-cs-hw-06-app
+    ports:
+      - "3000:3000"
+      - "5000:5000/udp"
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      MONGO_DB: messages_db
+      MONGO_COLLECTION: messages
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    container_name: goit-cs-hw-06-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      # дані БД зберігаються у volume, а не всередині контейнера
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
